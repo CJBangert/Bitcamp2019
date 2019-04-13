@@ -1,4 +1,6 @@
 import requests
+import tensorflow
+
 
 resp = requests.get('https://api.tdameritrade.com/v1/marketdata/$DJI/movers')
 if resp.status_code != 200:
