@@ -86,6 +86,8 @@ def handle_data(context, data):
 # Because we no longer have access to pipelines, we must find all the stock data beforehand and save it to a variable
 
 # In[15]:
+# def get_pricing (symbols, start_date, end_date, frequency) :
+#     reqes
 
 
 data = get_pricing(
