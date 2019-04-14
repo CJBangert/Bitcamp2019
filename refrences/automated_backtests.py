@@ -24,9 +24,9 @@ import pandas as pd
 from zipline.api import order, sid
 
 
-# In[3]:
+# TODO : stock array will be constan for not, will do portfolio optimization
 
-
+STOCKS = ['VYM', 'SPY', 'AAPL']
 
 
 # ## Step 2: Determine Variables
@@ -91,14 +91,17 @@ def handle_data(context, data):
 #     FMT = '%Y-%M-%d'
 #     bars = datetime.strptime(end_date, FMT) - datetime.strptime(start_date, FMT)
 #     return data.history(symbols, bar_count = bars, frequency =freq)
+start = ""
+end = ""
+data = load_bars_from_yahoo(stocks=STOCKS, indexes={}, start=start, end=end)
+data = data.dropna()
 
-
-data = get_pricing(
-    ['AAPL','SPY'],
-    start_date='2014-01-01',
-    end_date = '2015-02-15',
-    freq = '1d'
-)
+# data = get_pricing(
+#     ['AAPL','SPY'],
+#     start_date='2014-01-01',
+#     end_date = '2015-02-15',
+#     freq = '1d'
+# )
 
 
 # ## Step 5: Create the TradingAlgorithm object
@@ -188,36 +191,36 @@ print " "
 # In[19]:
 
 
-all_sharpes = pd.DataFrame(all_sharpes)
-all_sharpes.index.name = "Long Moving Average Days"
-all_sharpes.columns.name = "Short Moving Average Days"
+# all_sharpes = pd.DataFrame(all_sharpes)
+# all_sharpes.index.name = "Long Moving Average Days"
+# all_sharpes.columns.name = "Short Moving Average Days"
 
-all_sharpes
+# all_sharpes
 
 
 # In[20]:
 
 
-import matplotlib.pyplot as pyplot
+# import matplotlib.pyplot as pyplot
 
-def heat_map(df):
-    """
-    This creates our heatmap using our sharpe ratio dataframe
-    """
-    fig = pyplot.figure()
-    ax = fig.add_subplot(111)
-    axim = ax.imshow(df.values,cmap = pyplot.get_cmap('RdYlGn'), interpolation = 'nearest')
-    ax.set_xlabel(df.columns.name)
-    ax.set_xticks(np.arange(len(df.columns)))
-    ax.set_xticklabels(list(df.columns))
-    ax.set_ylabel(df.index.name)
-    ax.set_yticks(np.arange(len(df.index)))
-    ax.set_yticklabels(list(df.index))
-    ax.set_title("Sharpe Ratios")
-    pyplot.colorbar(axim)
+# def heat_map(df):
+#     """
+#     This creates our heatmap using our sharpe ratio dataframe
+#     """
+#     fig = pyplot.figure()
+#     ax = fig.add_subplot(111)
+#     axim = ax.imshow(df.values,cmap = pyplot.get_cmap('RdYlGn'), interpolation = 'nearest')
+#     ax.set_xlabel(df.columns.name)
+#     ax.set_xticks(np.arange(len(df.columns)))
+#     ax.set_xticklabels(list(df.columns))
+#     ax.set_ylabel(df.index.name)
+#     ax.set_yticks(np.arange(len(df.index)))
+#     ax.set_yticklabels(list(df.index))
+#     ax.set_title("Sharpe Ratios")
+#     pyplot.colorbar(axim)
     
-#: Plot our heatmap
-heat_map(all_sharpes)
+# #: Plot our heatmap
+# heat_map(all_sharpes)
 
 
 # In[ ]:
