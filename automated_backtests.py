@@ -15,6 +15,7 @@ import pytz
 from datetime import datetime
 import matplotlib.pyplot as pyplot
 from collections import defaultdict
+from datetime import datetime
 
 from zipline import TradingAlgorithm
 from zipline.api import order_target, record, symbol, history
@@ -37,7 +38,7 @@ from zipline.api import order, sid
 #: NOTICE HOW THIS IS OUTSIDE INITIALIZE, BECAUSE IT IS, WE CAN REDEFINE IT EVERYTIME WE REDINE INITIALIZE
 short_mavg_days = 20
 long_mavg_days = 50
-
+# dtafrm = None
 def initialize(context):
     context.aapl = 24
     context.spy = 8554
@@ -86,15 +87,17 @@ def handle_data(context, data):
 # Because we no longer have access to pipelines, we must find all the stock data beforehand and save it to a variable
 
 # In[15]:
-# def get_pricing (symbols, start_date, end_date, frequency) :
-#     reqes
+# def get_pricing (symbols, start_date, end_date, freq):
+#     FMT = '%Y-%M-%d'
+#     bars = datetime.strptime(end_date, FMT) - datetime.strptime(start_date, FMT)
+#     return data.history(symbols, bar_count = bars, frequency =freq)
 
 
 data = get_pricing(
     ['AAPL','SPY'],
     start_date='2014-01-01',
     end_date = '2015-02-15',
-    frequency='daily'
+    freq = '1d'
 )
 
 

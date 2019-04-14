@@ -1,7 +1,7 @@
 # Trading Bot
 
 Getting started
-Make a Quandl account
+Make a Quandl account to get api key
 Clone the repo and run
 
 ```bash

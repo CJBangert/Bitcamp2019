@@ -16,7 +16,7 @@ def handle_data(context, data):
     # from above and returns a pandas dataframe.
     short_mavg = data.history(context.asset, 'price', bar_count=100, frequency="1d").mean()
     long_mavg = data.history(context.asset, 'price', bar_count=300, frequency="1d").mean()
-
+    print data.history()
     # Trading logic
     if short_mavg > long_mavg:
         # order_target orders as many shares as needed to
@@ -29,3 +29,5 @@ def handle_data(context, data):
     record(AAPL=data.current(context.asset, 'price'),
            short_mavg=short_mavg,
            long_mavg=long_mavg)
+    # print short_mavg
+    # print long_mavg
